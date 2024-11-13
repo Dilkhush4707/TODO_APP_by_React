@@ -1,9 +1,14 @@
 import Todoitem from "./TodoItem";
-const TodoItems = ({ todoItems }) => {
+const TodoItems = ({ todoItems = [], ondelete }) => {
   return (
-    <div className="items-containor">
+    <div>
       {todoItems.map((item) => (
-        <Todoitem todoDate={item.duedate} todoName={item.name}></Todoitem>
+        <Todoitem
+          key={item.id}
+          todoDate={item.duedate}
+          todoName={item.name}
+          ondelete={ondelete(item.id)}
+        />
       ))}
     </div>
   );

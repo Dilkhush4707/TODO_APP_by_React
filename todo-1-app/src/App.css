@@ -1,20 +1,11 @@
-h1{
-  font-weight: 700;
-  font-size: 45px;
-  margin: 10px;
-  margin-bottom: 20px;
-}
+
 input{
-  width: 100%;
+  width: 80%;
 
 }
-.items-containor{
-  text-align: left;
 
-}
-.rows{
-  margin: 10px 5px;
-}
-.dj-button{
-  min-width: 80px;
+
+
+.todo-containor{
+ display: flexbox;
 }
