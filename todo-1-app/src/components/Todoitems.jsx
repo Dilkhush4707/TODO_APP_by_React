@@ -1,13 +1,16 @@
 import Todoitem from "./TodoItem";
-const TodoItems = ({ todoItems = [], ondelete }) => {
+import { useContext } from "react";
+import TodoItemsApi  from "../store/todostore";
+const TodoItems = () => {
+  const {todoItems} = useContext(TodoItemsApi);
+
   return (
     <div>
       {todoItems.map((item) => (
         <Todoitem
-          key={item.id}
+          key ={item.name}
           todoDate={item.duedate}
           todoName={item.name}
-          ondelete={ondelete(item.id)}
         />
       ))}
     </div>

@@ -1,5 +1,10 @@
 import style from './TodoItem.module.css'
-function Todoitem({ todoName, todoDate,ondelete }) {
+import { useContext } from 'react';
+import TodoItemsApi from "../store/todostore";
+
+import { MdDeleteForever } from 'react-icons/md';
+function Todoitem({ todoName, todoDate}) {
+  const {deleteItem} =useContext(TodoItemsApi);
   return (
     <div className="container">
       <div className="row">
@@ -8,9 +13,9 @@ function Todoitem({ todoName, todoDate,ondelete }) {
         <div className="col-2">
           <button type="button"
            className="btn btn-danger dj-button"
-           onClick={ondelete}>
+           onClick={()=>deleteItem(todoName)}>
             
-            Delete
+            <MdDeleteForever />
           </button>
         </div>
       </div>

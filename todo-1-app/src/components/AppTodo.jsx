@@ -1,19 +1,18 @@
 import styles from "./AppTodo.module.css/";
-import { useState } from "react";
-function AppTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [duedate, setDueDate] = useState("");
-  const handleNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-  const handleDueDateChange = (event) => {
-    setDueDate(event.target.value);
-  };
+import { useState, useContext } from "react";
+import { GrAddCircle } from "react-icons/gr";
+import TodoItemsApi from "../store/todostore";
+function AppTodo() {
+  const { addItem } = useContext(TodoItemsApi);
+  const [todo, setTodo] = useState({ name: "", dueDate: "" });
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTodo((prevTodo) => ({ ...prevTodo, [name]: value }));
+  };
   const handleButtonClick = () => {
-    onNewItem(todoName, duedate);
-    setDueDate("");
-    setTodoName("");
+    addItem(todo.name, todo.dueDate);
+    setTodo({ name: "", dueDate: "" });
   };
   return (
     <div className={`${styles["todo-containor"]}`}>
@@ -21,15 +20,19 @@ function AppTodo({ onNewItem }) {
         <div className="col-4">
           <input
             type="text"
+            name="name"
             placeholder="Enter Todo here"
-            value={todoName}
-            onChange={handleNameChange}
+            value={todo.name}
+            onChange={handleInputChange}
           />
         </div>
         <div className="col-4">
-          <input type="date"
-          value={duedate}
-           onChange={handleDueDateChange} />
+          <input
+            type="date"
+            name="dueDate"
+            value={todo.dueDate}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="col-2">
           <button
@@ -37,7 +40,7 @@ function AppTodo({ onNewItem }) {
             className="btn btn-success"
             onClick={handleButtonClick}
           >
-            Add
+            <GrAddCircle />
           </button>
         </div>
       </div>
