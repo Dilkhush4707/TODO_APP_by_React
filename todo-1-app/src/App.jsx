@@ -18,7 +18,6 @@ function App() {
     const deletetodu=todoItems.filter((item)=>todoItemName);
     setTodoItems(deleteItem);
   }
-
   return (
     <TodoItemsApi.Provider value={{ todoItems, addItem, deleteItem }}>
       <center className="todo-container">
